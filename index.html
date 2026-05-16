@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Picks — Burgers & Korean Tacos · Montréal</title>
+  <title>Picks — Burgers & Tacos Coréens · Montréal</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,12 +27,41 @@
       overflow-x: hidden;
     }
 
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      position: fixed;
+      top: 24px; right: 24px;
+      z-index: 200;
+      display: flex;
+      background: rgba(26,26,24,0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(245,240,232,0.15);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .lang-btn {
+      padding: 8px 14px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.5);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      transition: color 0.2s, background 0.2s;
+    }
+    .lang-btn.active {
+      background: var(--red);
+      color: white;
+    }
+    .lang-btn:hover:not(.active) { color: var(--cream); }
+
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
       padding: 20px 48px;
-      mix-blend-mode: normal;
     }
     .nav-logo {
       font-family: 'Bebas Neue', sans-serif;
@@ -43,6 +72,7 @@
     }
     .nav-links {
       display: flex; gap: 36px; list-style: none;
+      margin-right: 100px;
     }
     .nav-links a {
       color: var(--cream);
@@ -70,14 +100,12 @@
       align-items: flex-end;
       overflow: hidden;
     }
-
     .hero-bg {
       position: absolute; inset: 0;
       background:
         radial-gradient(ellipse at 60% 40%, rgba(200,51,26,0.18) 0%, transparent 60%),
         radial-gradient(ellipse at 20% 80%, rgba(212,168,67,0.12) 0%, transparent 50%);
     }
-
     .hero-grid {
       position: absolute; inset: 0;
       background-image:
@@ -85,7 +113,6 @@
         linear-gradient(90deg, rgba(245,240,232,0.04) 1px, transparent 1px);
       background-size: 60px 60px;
     }
-
     .hero-stamp {
       position: absolute;
       top: 130px; right: 60px;
@@ -109,16 +136,13 @@
       font-family: 'Bebas Neue', sans-serif;
       font-size: 38px; line-height: 1;
       color: var(--gold);
-      animation: spin 20s linear infinite reverse;
     }
     .stamp-label {
       font-size: 10px;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: var(--gold);
-      animation: spin 20s linear infinite reverse;
     }
-
     .hero-text {
       position: relative;
       padding: 0 60px 80px;
@@ -189,17 +213,13 @@
       transition: border-color 0.2s;
     }
     .btn-ghost:hover { border-color: var(--cream); }
-
     .hero-scroll {
       position: absolute; bottom: 36px; right: 60px;
       display: flex; align-items: center; gap: 12px;
       color: rgba(245,240,232,0.35); font-size: 11px;
       letter-spacing: 3px; text-transform: uppercase;
     }
-    .scroll-line {
-      width: 40px; height: 1px;
-      background: rgba(245,240,232,0.3);
-    }
+    .scroll-line { width: 40px; height: 1px; background: rgba(245,240,232,0.3); }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -225,15 +245,13 @@
       color: white;
       flex-shrink: 0;
     }
-    .marquee-track .dot {
-      color: rgba(255,255,255,0.4);
-    }
+    .marquee-track .dot { color: rgba(255,255,255,0.4); }
     @keyframes marquee {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
     }
 
-    /* ── ABOUT STRIP ── */
+    /* ── ABOUT ── */
     .about {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -243,6 +261,7 @@
       background: var(--charcoal);
       padding: 80px 64px;
       display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
     }
     .section-num {
       font-family: 'Bebas Neue', sans-serif;
@@ -253,7 +272,6 @@
       top: -20px; left: 40px;
       pointer-events: none;
     }
-    .about-left { position: relative; overflow: hidden; }
     .section-label {
       font-size: 11px;
       letter-spacing: 4px;
@@ -275,10 +293,7 @@
       line-height: 1.8;
       max-width: 440px;
     }
-    .about-stats {
-      display: flex; gap: 48px;
-      margin-top: 48px;
-    }
+    .about-stats { display: flex; gap: 48px; margin-top: 48px; }
     .stat-num {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 48px;
@@ -341,11 +356,8 @@
       pointer-events: none;
     }
 
-    /* ── MENU SECTION ── */
-    .menu-section {
-      padding: 100px 60px;
-      background: var(--cream);
-    }
+    /* ── MENU ── */
+    .menu-section { padding: 100px 60px; background: var(--cream); }
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -376,7 +388,6 @@
       flex-shrink: 0;
     }
     .see-all:hover { color: var(--red); border-color: var(--red); }
-
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -397,7 +408,6 @@
     .menu-card:hover .menu-price { color: var(--gold); }
     .menu-card:hover .menu-num { color: rgba(245,240,232,0.06); }
     .menu-card:hover .menu-order { opacity: 1; }
-
     .menu-num {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 80px;
@@ -441,11 +451,8 @@
       font-size: 18px;
     }
 
-    /* ── HOW TO ORDER ── */
-    .order-section {
-      background: var(--charcoal);
-      padding: 100px 60px;
-    }
+    /* ── ORDER STEPS ── */
+    .order-section { background: var(--charcoal); padding: 100px 60px; }
     .order-section .section-title { color: var(--cream); margin-bottom: 64px; }
     .order-grid {
       display: grid;
@@ -472,13 +479,9 @@
       color: var(--cream);
       margin-bottom: 12px;
     }
-    .step-desc {
-      font-size: 14px;
-      color: rgba(245,240,232,0.45);
-      line-height: 1.7;
-    }
+    .step-desc { font-size: 14px; color: rgba(245,240,232,0.45); line-height: 1.7; }
 
-    /* ── CTA SECTION ── */
+    /* ── CTA ── */
     .cta-section {
       background: var(--red);
       padding: 100px 60px;
@@ -532,7 +535,7 @@
     }
     .btn-outline-white:hover { border-color: white; }
 
-    /* ── INFO STRIP ── */
+    /* ── INFO ── */
     .info-strip {
       background: var(--paper);
       padding: 60px;
@@ -540,10 +543,7 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 2px;
     }
-    .info-block {
-      padding: 40px 36px;
-      background: var(--cream);
-    }
+    .info-block { padding: 40px 36px; background: var(--cream); }
     .info-label {
       font-size: 11px;
       letter-spacing: 3px;
@@ -557,17 +557,11 @@
       color: var(--charcoal);
       line-height: 1.4;
     }
-    .info-value a {
-      color: var(--red);
-      text-decoration: none;
-    }
+    .info-value a { color: var(--red); text-decoration: none; }
     .info-value a:hover { text-decoration: underline; }
 
     /* ── REVIEWS ── */
-    .reviews-section {
-      padding: 100px 60px;
-      background: var(--charcoal);
-    }
+    .reviews-section { padding: 100px 60px; background: var(--charcoal); }
     .reviews-section .section-title { color: var(--cream); margin-bottom: 64px; }
     .reviews-grid {
       display: grid;
@@ -580,16 +574,8 @@
       border-top: 2px solid transparent;
       transition: border-color 0.2s, background 0.2s;
     }
-    .review-card:hover {
-      border-color: var(--red);
-      background: rgba(245,240,232,0.07);
-    }
-    .review-stars {
-      color: var(--gold);
-      font-size: 14px;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-    }
+    .review-card:hover { border-color: var(--red); background: rgba(245,240,232,0.07); }
+    .review-stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; margin-bottom: 20px; }
     .review-text {
       font-family: 'DM Serif Display', serif;
       font-style: italic;
@@ -598,12 +584,7 @@
       line-height: 1.6;
       margin-bottom: 24px;
     }
-    .review-author {
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+    .review-author { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
 
     /* ── FOOTER ── */
     footer {
@@ -620,13 +601,7 @@
       letter-spacing: 4px;
       color: var(--cream);
     }
-    .footer-right {
-      font-size: 12px;
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-align: right;
-      line-height: 1.8;
-    }
+    .footer-right { font-size: 12px; color: var(--muted); letter-spacing: 1px; text-align: right; line-height: 1.8; }
     .footer-right a { color: var(--gold); text-decoration: none; }
 
     /* ── MOBILE ── */
@@ -649,19 +624,26 @@
       footer { flex-direction: column; gap: 20px; padding: 36px 24px; text-align: center; }
       .footer-right { text-align: center; }
       .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .lang-toggle { top: 16px; right: 16px; }
     }
   </style>
 </head>
 <body>
 
+<!-- LANG TOGGLE -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('fr')" id="btn-fr">FR</button>
+  <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+</div>
+
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Picks</a>
   <ul class="nav-links">
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#reviews">Reviews</a></li>
-    <li><a href="tel:+15149371937" class="nav-cta">Order Now</a></li>
+    <li><a href="#menu" data-fr="Menu" data-en="Menu">Menu</a></li>
+    <li><a href="#about" data-fr="À propos" data-en="About">À propos</a></li>
+    <li><a href="#reviews" data-fr="Avis" data-en="Reviews">Avis</a></li>
+    <li><a href="tel:+15149371937" class="nav-cta" data-fr="Commander" data-en="Order Now">Commander</a></li>
   </ul>
 </nav>
 
@@ -669,52 +651,43 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-
   <div class="hero-stamp">
     <div class="hero-stamp-inner">
       <div class="stamp-rating">4.6</div>
       <div class="stamp-label">★★★★★</div>
-      <div class="stamp-label" style="font-size:9px;margin-top:4px;">967 reviews</div>
+      <div class="stamp-label" style="font-size:9px;margin-top:4px;">967 avis</div>
     </div>
   </div>
-
   <div class="hero-text">
-    <span class="hero-tag">Montréal's Favourite Counter</span>
-    <h1 class="hero-title">Build<br>Your<br><em>Perfect</em><br>Burger.</h1>
-    <p class="hero-sub">Build-your-own burgers & Korean tacos, dished out fresh over the counter on Rue St-Marc. No fuss. No reservations. Just good food.</p>
+    <span class="hero-tag" data-fr="Le meilleur comptoir de Montréal" data-en="Montréal's Favourite Counter">Le meilleur comptoir de Montréal</span>
+    <h1 class="hero-title" data-fr="Crée<br>Ton<br><em>Burger</em><br>Parfait." data-en="Build<br>Your<br><em>Perfect</em><br>Burger.">Crée<br>Ton<br><em>Burger</em><br>Parfait.</h1>
+    <p class="hero-sub" data-fr="Burgers personnalisés et tacos coréens, servis frais au comptoir sur la Rue St-Marc. Pas de chichis. Pas de réservation. Juste de la bonne bouffe." data-en="Build-your-own burgers & Korean tacos, dished out fresh over the counter on Rue St-Marc. No fuss. No reservations. Just good food.">Burgers personnalisés et tacos coréens, servis frais au comptoir sur la Rue St-Marc. Pas de chichis. Pas de réservation. Juste de la bonne bouffe.</p>
     <div class="hero-actions">
-      <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-primary">Order Pickup</a>
-      <a href="#menu" class="btn-ghost">See Menu</a>
+      <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-primary" data-fr="Commander pour emporter" data-en="Order Pickup">Commander pour emporter</a>
+      <a href="#menu" class="btn-ghost" data-fr="Voir le menu" data-en="See Menu">Voir le menu</a>
     </div>
   </div>
-
   <div class="hero-scroll">
     <div class="scroll-line"></div>
-    Scroll
+    <span data-fr="Défiler" data-en="Scroll">Défiler</span>
   </div>
 </section>
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
   <div class="marquee-track">
-    <span>Build Your Burger</span><span class="dot">·</span>
-    <span>Korean Tacos</span><span class="dot">·</span>
-    <span>$10–20</span><span class="dot">·</span>
-    <span>Open Daily</span><span class="dot">·</span>
+    <span data-fr="Burger personnalisé" data-en="Build Your Burger">Burger personnalisé</span><span class="dot">·</span>
+    <span>Tacos Coréens</span><span class="dot">·</span>
+    <span>10–20$</span><span class="dot">·</span>
+    <span data-fr="Ouvert tous les jours" data-en="Open Daily">Ouvert tous les jours</span><span class="dot">·</span>
     <span>Rue St-Marc, MTL</span><span class="dot">·</span>
-    <span>Vegetarian Options</span><span class="dot">·</span>
-    <span>Build Your Burger</span><span class="dot">·</span>
-    <span>Korean Tacos</span><span class="dot">·</span>
-    <span>$10–20</span><span class="dot">·</span>
-    <span>Open Daily</span><span class="dot">·</span>
+    <span data-fr="Options végétariennes" data-en="Vegetarian Options">Options végétariennes</span><span class="dot">·</span>
+    <span data-fr="Burger personnalisé" data-en="Build Your Burger">Burger personnalisé</span><span class="dot">·</span>
+    <span>Tacos Coréens</span><span class="dot">·</span>
+    <span>10–20$</span><span class="dot">·</span>
+    <span data-fr="Ouvert tous les jours" data-en="Open Daily">Ouvert tous les jours</span><span class="dot">·</span>
     <span>Rue St-Marc, MTL</span><span class="dot">·</span>
-    <span>Vegetarian Options</span><span class="dot">·</span>
-    <span>Build Your Burger</span><span class="dot">·</span>
-    <span>Korean Tacos</span><span class="dot">·</span>
-    <span>$10–20</span><span class="dot">·</span>
-    <span>Open Daily</span><span class="dot">·</span>
-    <span>Rue St-Marc, MTL</span><span class="dot">·</span>
-    <span>Vegetarian Options</span><span class="dot">·</span>
+    <span data-fr="Options végétariennes" data-en="Vegetarian Options">Options végétariennes</span><span class="dot">·</span>
   </div>
 </div>
 
@@ -722,21 +695,21 @@
 <section class="about" id="about">
   <div class="about-left">
     <div class="section-num">01</div>
-    <span class="section-label">The Spot</span>
-    <h2 class="about-headline">A modest storefront.<br><em>Serious</em> food.</h2>
-    <p class="about-body">Picks keeps it simple: you choose your ingredients, we build your burger. Same goes for the Korean tacos — a mashup that somehow works every time. Counter service, no reservations, no nonsense. Just show up hungry.</p>
+    <span class="section-label" data-fr="Le lieu" data-en="The Spot">Le lieu</span>
+    <h2 class="about-headline" data-fr="Un petit local.<br><em>Une grande</em> cuisine." data-en="A modest storefront.<br><em>Serious</em> food.">Un petit local.<br><em>Une grande</em> cuisine.</h2>
+    <p class="about-body" data-fr="Chez Picks, c'est simple : tu choisis tes ingrédients, on construit ton burger. Pareil pour les tacos coréens — un mélange qui fonctionne à chaque fois. Service au comptoir, sans réservation, sans chichi. Arrive juste en ayant faim." data-en="Picks keeps it simple: you choose your ingredients, we build your burger. Same goes for the Korean tacos — a mashup that somehow works every time. Counter service, no reservations, no nonsense. Just show up hungry.">Chez Picks, c'est simple : tu choisis tes ingrédients, on construit ton burger. Pareil pour les tacos coréens — un mélange qui fonctionne à chaque fois. Service au comptoir, sans réservation, sans chichi. Arrive juste en ayant faim.</p>
     <div class="about-stats">
       <div>
         <div class="stat-num">4.6</div>
-        <div class="stat-label">Rating</div>
+        <div class="stat-label" data-fr="Note" data-en="Rating">Note</div>
       </div>
       <div>
         <div class="stat-num">967</div>
-        <div class="stat-label">Reviews</div>
+        <div class="stat-label" data-fr="Avis" data-en="Reviews">Avis</div>
       </div>
       <div>
         <div class="stat-num">$15</div>
-        <div class="stat-label">Avg. Meal</div>
+        <div class="stat-label" data-fr="Repas moy." data-en="Avg. Meal">Repas moy.</div>
       </div>
     </div>
   </div>
@@ -752,143 +725,142 @@
 <!-- MENU -->
 <section class="menu-section" id="menu">
   <div class="section-header">
-    <h2 class="section-title">The<br><em>Menu</em></h2>
-    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="see-all">Full Menu →</a>
+    <h2 class="section-title" data-fr="Le<br><em>Menu</em>" data-en="The<br><em>Menu</em>">Le<br><em>Menu</em></h2>
+    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="see-all" data-fr="Menu complet →" data-en="Full Menu →">Menu complet →</a>
   </div>
   <div class="menu-grid">
     <div class="menu-card">
       <div class="menu-num">01</div>
       <span class="menu-emoji">🍔</span>
-      <div class="menu-name">Classic Picks Burger</div>
-      <div class="menu-desc">Build it your way — choose your patty, toppings, and sauce. Beef, chicken, or veggie.</div>
-      <div class="menu-price">from $12</div>
+      <div class="menu-name" data-fr="Burger Picks Classique" data-en="Classic Picks Burger">Burger Picks Classique</div>
+      <div class="menu-desc" data-fr="Construis-le à ta façon — choisis ton steak, tes garnitures et ta sauce. Boeuf, poulet ou végé." data-en="Build it your way — choose your patty, toppings, and sauce. Beef, chicken, or veggie.">Construis-le à ta façon — choisis ton steak, tes garnitures et ta sauce. Boeuf, poulet ou végé.</div>
+      <div class="menu-price" data-fr="à partir de 12$" data-en="from $12">à partir de 12$</div>
       <div class="menu-order">→</div>
     </div>
     <div class="menu-card">
       <div class="menu-num">02</div>
       <span class="menu-emoji">🌮</span>
-      <div class="menu-name">Korean Tacos</div>
-      <div class="menu-desc">Marinated meat, pickled slaw, gochujang aioli. Two tacos per order. A Picks signature.</div>
-      <div class="menu-price">from $10</div>
+      <div class="menu-name">Tacos Coréens</div>
+      <div class="menu-desc" data-fr="Viande marinée, chou mariné, aïoli gochujang. Deux tacos par commande. La signature de Picks." data-en="Marinated meat, pickled slaw, gochujang aioli. Two tacos per order. A Picks signature.">Viande marinée, chou mariné, aïoli gochujang. Deux tacos par commande. La signature de Picks.</div>
+      <div class="menu-price" data-fr="à partir de 10$" data-en="from $10">à partir de 10$</div>
       <div class="menu-order">→</div>
     </div>
     <div class="menu-card">
       <div class="menu-num">03</div>
       <span class="menu-emoji">🍟</span>
-      <div class="menu-name">Loaded Fries</div>
-      <div class="menu-desc">Crispy fries with your pick of toppings. Get the kimchi fries if you know, you know.</div>
-      <div class="menu-price">from $7</div>
+      <div class="menu-name" data-fr="Frites Garnies" data-en="Loaded Fries">Frites Garnies</div>
+      <div class="menu-desc" data-fr="Frites croustillantes avec tes garnitures préférées. Prends les frites kimchi si tu sais ce que tu fais." data-en="Crispy fries with your pick of toppings. Get the kimchi fries if you know, you know.">Frites croustillantes avec tes garnitures préférées. Prends les frites kimchi si tu sais ce que tu fais.</div>
+      <div class="menu-price" data-fr="à partir de 7$" data-en="from $7">à partir de 7$</div>
       <div class="menu-order">→</div>
     </div>
     <div class="menu-card">
       <div class="menu-num">04</div>
       <span class="menu-emoji">🥗</span>
-      <div class="menu-name">Veggie Build</div>
-      <div class="menu-desc">Plant-based patty with all the same topping choices. Fully loaded, no compromise.</div>
-      <div class="menu-price">from $13</div>
+      <div class="menu-name" data-fr="Option Végé" data-en="Veggie Build">Option Végé</div>
+      <div class="menu-desc" data-fr="Steak végétal avec tous les mêmes choix de garnitures. Complet, sans compromis." data-en="Plant-based patty with all the same topping choices. Fully loaded, no compromise.">Steak végétal avec tous les mêmes choix de garnitures. Complet, sans compromis.</div>
+      <div class="menu-price" data-fr="à partir de 13$" data-en="from $13">à partir de 13$</div>
       <div class="menu-order">→</div>
     </div>
     <div class="menu-card">
       <div class="menu-num">05</div>
       <span class="menu-emoji">🥤</span>
-      <div class="menu-name">Drinks & Sides</div>
-      <div class="menu-desc">House-made lemonade, soft drinks, and rotating daily sides. Ask what's fresh.</div>
-      <div class="menu-price">from $3</div>
+      <div class="menu-name" data-fr="Boissons & Accompagnements" data-en="Drinks & Sides">Boissons & Accompagnements</div>
+      <div class="menu-desc" data-fr="Limonade maison, boissons gazeuses et accompagnements du jour. Demande ce qui est frais." data-en="House-made lemonade, soft drinks, and rotating daily sides. Ask what's fresh.">Limonade maison, boissons gazeuses et accompagnements du jour. Demande ce qui est frais.</div>
+      <div class="menu-price" data-fr="à partir de 3$" data-en="from $3">à partir de 3$</div>
       <div class="menu-order">→</div>
     </div>
     <div class="menu-card" style="background:var(--red); cursor:default;">
       <div class="menu-num" style="color:rgba(255,255,255,0.08);">★</div>
       <span class="menu-emoji">📍</span>
-      <div class="menu-name" style="color:white;">Dine In or Take Out</div>
-      <div class="menu-desc" style="color:rgba(255,255,255,0.7);">Walk in, order at the counter, and eat in our storefront or grab it to go. Open until 10 PM.</div>
-      <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-white" style="margin-top:24px; display:inline-block;">Order Now</a>
+      <div class="menu-name" style="color:white;" data-fr="Sur place ou à emporter" data-en="Dine In or Take Out">Sur place ou à emporter</div>
+      <div class="menu-desc" style="color:rgba(255,255,255,0.7);" data-fr="Entre, commande au comptoir et mange dans notre local ou repars avec ton repas. Ouvert jusqu'à 22h." data-en="Walk in, order at the counter, and eat in our storefront or grab it to go. Open until 10 PM.">Entre, commande au comptoir et mange dans notre local ou repars avec ton repas. Ouvert jusqu'à 22h.</div>
+      <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-white" style="margin-top:24px; display:inline-block;" data-fr="Commander" data-en="Order Now">Commander</a>
     </div>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
 <section class="order-section">
-  <h2 class="section-title" style="margin-bottom:64px;">How It<br><em style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--gold);">Works</em></h2>
+  <h2 class="section-title" style="margin-bottom:64px;" data-fr="Comment<br><em style='font-family:DM Serif Display,serif;font-style:italic;color:var(--gold);'>Ça Marche</em>" data-en="How It<br><em style='font-family:DM Serif Display,serif;font-style:italic;color:var(--gold);'>Works</em>">Comment<br><em style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--gold);">Ça Marche</em></h2>
   <div class="order-grid">
     <div class="order-step">
       <div class="step-num">01</div>
       <span class="step-icon">🚶</span>
-      <div class="step-title">Walk In</div>
-      <div class="step-desc">No reservations needed. Just show up at 1407 Rue St-Marc. We're open until 10 PM.</div>
+      <div class="step-title" data-fr="Entre" data-en="Walk In">Entre</div>
+      <div class="step-desc" data-fr="Pas de réservation. Présente-toi au 1407 Rue St-Marc. On est ouverts jusqu'à 22h." data-en="No reservations needed. Just show up at 1407 Rue St-Marc. We're open until 10 PM.">Pas de réservation. Présente-toi au 1407 Rue St-Marc. On est ouverts jusqu'à 22h.</div>
     </div>
     <div class="order-step">
       <div class="step-num">02</div>
       <span class="step-icon">🛠️</span>
-      <div class="step-title">Build It</div>
-      <div class="step-desc">Pick your base, patty, toppings, and sauce. It's your burger — make it yours.</div>
+      <div class="step-title" data-fr="Construis" data-en="Build It">Construis</div>
+      <div class="step-desc" data-fr="Choisis ta base, ton steak, tes garnitures et ta sauce. C'est ton burger — fais-le à ta façon." data-en="Pick your base, patty, toppings, and sauce. It's your burger — make it yours.">Choisis ta base, ton steak, tes garnitures et ta sauce. C'est ton burger — fais-le à ta façon.</div>
     </div>
     <div class="order-step">
       <div class="step-num">03</div>
       <span class="step-icon">🧾</span>
-      <div class="step-title">Pay & Wait</div>
-      <div class="step-desc">Order at the counter. Food comes out fast. $10–20 all in, no hidden extras.</div>
+      <div class="step-title" data-fr="Paye & Attends" data-en="Pay & Wait">Paye & Attends</div>
+      <div class="step-desc" data-fr="Commande au comptoir. La nourriture sort vite. 10–20$ tout inclus, sans surprise." data-en="Order at the counter. Food comes out fast. $10–20 all in, no hidden extras.">Commande au comptoir. La nourriture sort vite. 10–20$ tout inclus, sans surprise.</div>
     </div>
     <div class="order-step">
       <div class="step-num">04</div>
       <span class="step-icon">😋</span>
-      <div class="step-title">Eat</div>
-      <div class="step-desc">Dine in the storefront or take it with you. Either way, it travels well.</div>
+      <div class="step-title" data-fr="Mange" data-en="Eat">Mange</div>
+      <div class="step-desc" data-fr="Mange dans le local ou emporte ton repas. Dans les deux cas, c'est bon." data-en="Dine in the storefront or take it with you. Either way, it travels well.">Mange dans le local ou emporte ton repas. Dans les deux cas, c'est bon.</div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
 <section class="cta-section">
-  <h2 class="cta-headline">Hungry<br>Right <em>Now?</em></h2>
+  <h2 class="cta-headline" data-fr="Tu as<br><em>Faim ?</em>" data-en="Hungry<br>Right <em>Now?</em>">Tu as<br><em>Faim ?</em></h2>
   <div class="cta-actions">
-    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-white">Order Pickup</a>
-    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-outline-white">Order Delivery</a>
-    <a href="tel:+15149371937" class="btn-outline-white">Call: 514-937-1937</a>
+    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-white" data-fr="Commander pour emporter" data-en="Order Pickup">Commander pour emporter</a>
+    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-outline-white" data-fr="Commander en livraison" data-en="Order Delivery">Commander en livraison</a>
+    <a href="tel:+15149371937" class="btn-outline-white">514-937-1937</a>
   </div>
 </section>
 
 <!-- INFO -->
 <div class="info-strip">
   <div class="info-block">
-    <div class="info-label">Location</div>
+    <div class="info-label" data-fr="Adresse" data-en="Location">Adresse</div>
     <div class="info-value">1407 Rue St-Marc<br>Montréal, QC H3H 2G4</div>
   </div>
   <div class="info-block">
-    <div class="info-label">Hours</div>
-    <div class="info-value">Open Daily<br>Closes 10 PM</div>
+    <div class="info-label" data-fr="Horaires" data-en="Hours">Horaires</div>
+    <div class="info-value" data-fr="Ouvert tous les jours<br>Ferme à 22h" data-en="Open Daily<br>Closes 10 PM">Ouvert tous les jours<br>Ferme à 22h</div>
   </div>
   <div class="info-block">
-    <div class="info-label">Contact</div>
-    <div class="info-value"><a href="tel:+15149371937">514-937-1937</a><br>Walk-ins welcome</div>
+    <div class="info-label" data-fr="Contact" data-en="Contact">Contact</div>
+    <div class="info-value"><a href="tel:+15149371937">514-937-1937</a><br><span data-fr="Sans réservation" data-en="Walk-ins welcome">Sans réservation</span></div>
   </div>
 </div>
 
 <!-- REVIEWS -->
 <section class="reviews-section" id="reviews">
   <div class="section-header">
-    <h2 class="section-title">What<br><em style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--red);">People</em><br>Say</h2>
-    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="see-all" style="color:var(--muted);border-color:var(--muted);">967 Reviews →</a>
+    <h2 class="section-title" data-fr="Ce Qu'on<br><em style='font-family:DM Serif Display,serif;font-style:italic;color:var(--red);'>Dit de Nous</em>" data-en="What<br><em style='font-family:DM Serif Display,serif;font-style:italic;color:var(--red);'>People</em><br>Say">Ce Qu'on<br><em style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--red);">Dit de Nous</em></h2>
+    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="see-all" style="color:var(--muted);border-color:var(--muted);" data-fr="967 Avis →" data-en="967 Reviews →">967 Avis →</a>
   </div>
   <div class="reviews-grid">
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <div class="review-text">"The Korean tacos are unreal. I've been coming here every week since I found this place. Nothing else in the city touches it."</div>
-      <div class="review-author">— Google Review</div>
+      <div class="review-text" data-fr='"Les tacos coréens sont incroyables. Je viens ici chaque semaine depuis que j'ai découvert l'endroit. Rien d'autre dans la ville ne s'en approche."' data-en='"The Korean tacos are unreal. I've been coming here every week since I found this place. Nothing else in the city touches it."'>"Les tacos coréens sont incroyables. Je viens ici chaque semaine depuis que j'ai découvert l'endroit. Rien d'autre dans la ville ne s'en approche."</div>
+      <div class="review-author" data-fr="— Avis Google" data-en="— Google Review">— Avis Google</div>
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★★</div>
-      <div class="review-text">"Best build-your-own burger in Montréal. The toppings are fresh, the patties are juicy, and it's actually affordable. Rare combo."</div>
-      <div class="review-author">— Google Review</div>
+      <div class="review-text" data-fr='"Le meilleur burger personnalisé à Montréal. Les garnitures sont fraîches, les steaks sont juteux, et c'est vraiment abordable. Combo rare."' data-en='"Best build-your-own burger in Montréal. The toppings are fresh, the patties are juicy, and it's actually affordable. Rare combo."'>"Le meilleur burger personnalisé à Montréal. Les garnitures sont fraîches, les steaks sont juteux, et c'est vraiment abordable. Combo rare."</div>
+      <div class="review-author" data-fr="— Avis Google" data-en="— Google Review">— Avis Google</div>
     </div>
     <div class="review-card">
       <div class="review-stars">★★★★☆</div>
-      <div class="review-text">"Small place but the food punches way above its weight. Quick service, good value. The veggie option is genuinely great."</div>
-      <div class="review-author">— Google Review</div>
+      <div class="review-text" data-fr='"Petit local mais la nourriture est bien au-dessus de ce qu'on attend. Service rapide, bon rapport qualité-prix. L'option végé est vraiment bonne."' data-en='"Small place but the food punches way above its weight. Quick service, good value. The veggie option is genuinely great."'>"Petit local mais la nourriture est bien au-dessus de ce qu'on attend. Service rapide, bon rapport qualité-prix. L'option végé est vraiment bonne."</div>
+      <div class="review-author" data-fr="— Avis Google" data-en="— Google Review">— Avis Google</div>
     </div>
   </div>
-
   <div style="margin-top:60px; text-align:center;">
-    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-primary">Read All 967 Reviews</a>
+    <a href="https://share.google/hazaIaAc23FNA1ypa" target="_blank" class="btn-primary" data-fr="Lire les 967 avis" data-en="Read All 967 Reviews">Lire les 967 avis</a>
   </div>
 </section>
 
@@ -896,22 +868,28 @@
 <footer>
   <div class="footer-logo">Picks</div>
   <div class="footer-right">
-    1407 Rue St-Marc, Montréal · Open until 10 PM<br>
-    <a href="tel:+15149371937">514-937-1937</a> · $10–20 per person
+    1407 Rue St-Marc, Montréal · <span data-fr="Ouvert jusqu'à 22h" data-en="Open until 10 PM">Ouvert jusqu'à 22h</span><br>
+    <a href="tel:+15149371937">514-937-1937</a> · <span data-fr="10–20$ par personne" data-en="$10–20 per person">10–20$ par personne</span>
   </div>
 </footer>
 
 <script>
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
+  let currentLang = 'fr';
+
+  function setLang(lang) {
+    currentLang = lang;
+    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-fr][data-en]').forEach(el => {
+      const text = el.getAttribute('data-' + lang);
+      if (text) el.innerHTML = text;
     });
-  });
+
+    // stamp label
+    document.querySelector('.stamp-label:last-child').textContent = lang === 'fr' ? '967 avis' : '967 reviews';
+  }
 
   // Nav background on scroll
   const nav = document.querySelector('nav');
@@ -923,6 +901,14 @@
       nav.style.background = 'transparent';
       nav.style.backdropFilter = 'none';
     }
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
   });
 
   // Fade in on scroll
